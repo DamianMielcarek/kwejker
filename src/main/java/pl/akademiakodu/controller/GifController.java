@@ -5,9 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import pl.akademiakodu.data.GifRepository;
+import pl.akademiakodu.dao.GifRepository;
 import pl.akademiakodu.model.Gif;
 
 import java.util.List;
@@ -23,7 +21,7 @@ public class GifController {
     private GifRepository gifRepository;
 
     @GetMapping("/")
-    public String listGifts(ModelMap modelMap)
+    public String listGifs(ModelMap modelMap)
     {
         List<Gif> allGifs = gifRepository.getAllGifs();
         modelMap.put("gifs",allGifs);

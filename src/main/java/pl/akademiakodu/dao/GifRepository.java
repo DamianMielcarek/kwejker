@@ -1,4 +1,4 @@
-package pl.akademiakodu.data;
+package pl.akademiakodu.dao;
 
 import java.util.Arrays;
 import java.util.List;

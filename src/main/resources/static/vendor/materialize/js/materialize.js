@@ -451,7 +451,7 @@ else {
     var options = $.extend({}, defaults, option);
 
     // Dropdown menu
-    var activates = $("#"+ origin.attr('data-activates'));
+    var activates = $("#"+ origin.attr('dao-activates'));
 
     function updateOptions() {
       if (origin.data('induration') !== undefined)
@@ -480,7 +480,7 @@ else {
       Used in hover and click handler.
     */
     function placeDropdown() {
-      // Check html data attributes
+      // Check html dao attributes
       updateOptions();
 
       // Set Dropdown state
@@ -1255,7 +1255,7 @@ $(document).ready(function(){
       // Remove tooltip from the activator
       if (options === "remove") {
         this.each(function(){
-          $('#' + $(this).attr('data-tooltip-id')).remove();
+          $('#' + $(this).attr('dao-tooltip-id')).remove();
         });
         return false;
       }
@@ -1266,10 +1266,10 @@ $(document).ready(function(){
       return this.each(function(){
         var tooltipId = Materialize.guid();
         var origin = $(this);
-        origin.attr('data-tooltip-id', tooltipId);
+        origin.attr('dao-tooltip-id', tooltipId);
 
         // Create Text span
-        var tooltip_text = $('<span></span>').text(origin.attr('data-tooltip'));
+        var tooltip_text = $('<span></span>').text(origin.attr('dao-tooltip'));
 
         // Create tooltip
         var newTooltip = $('<div></div>');
@@ -1297,12 +1297,12 @@ $(document).ready(function(){
               newTooltip.css({ display: 'block', left: '0px', top: '0px' });
 
               // Set Tooltip text
-              newTooltip.children('span').text(origin.attr('data-tooltip'));
+              newTooltip.children('span').text(origin.attr('dao-tooltip'));
 
               // Tooltip positioning
               var originWidth = origin.outerWidth();
               var originHeight = origin.outerHeight();
-              var tooltipPosition =  origin.attr('data-position');
+              var tooltipPosition =  origin.attr('dao-position');
               var tooltipHeight = newTooltip.outerHeight();
               var tooltipWidth = newTooltip.outerWidth();
               var tooltipVerticalMovement = '0px';
@@ -1500,11 +1500,11 @@ $(document).ready(function(){
               relativeX   = (e.touches[0].pageX - pos.left);
             }
 
-            // Attach data to element
-            ripple.setAttribute('data-hold', Date.now());
-            ripple.setAttribute('data-scale', scale);
-            ripple.setAttribute('data-x', relativeX);
-            ripple.setAttribute('data-y', relativeY);
+            // Attach dao to element
+            ripple.setAttribute('dao-hold', Date.now());
+            ripple.setAttribute('dao-scale', scale);
+            ripple.setAttribute('dao-x', relativeX);
+            ripple.setAttribute('dao-y', relativeY);
 
             // Set ripple position
             var rippleStyle = {
@@ -1552,12 +1552,12 @@ $(document).ready(function(){
                 return false;
             }
 
-            var relativeX   = ripple.getAttribute('data-x');
-            var relativeY   = ripple.getAttribute('data-y');
-            var scale       = ripple.getAttribute('data-scale');
+            var relativeX   = ripple.getAttribute('dao-x');
+            var relativeY   = ripple.getAttribute('dao-y');
+            var scale       = ripple.getAttribute('dao-scale');
 
             // Get delay beetween mousedown and mouse leave
-            var diff = Date.now() - Number(ripple.getAttribute('data-hold'));
+            var diff = Date.now() - Number(ripple.getAttribute('dao-hold'));
             var delay = 350 - diff;
 
             if (delay < 0) {
@@ -1903,7 +1903,7 @@ $(document).ready(function(){
 
       $(this).each(function(){
         var $this = $(this);
-        var menu_id = $("#"+ $this.attr('data-activates'));
+        var menu_id = $("#"+ $this.attr('dao-activates'));
 
         // Set to width
         if (options.menuWidth != 240) {
@@ -2835,7 +2835,7 @@ $(document).ready(function(){
       // escape double quotes
       var sanitizedLabelHtml = label.html().replace(/"/g, '&quot;');
 
-      var $newSelect = $('<input type="text" class="select-dropdown" readonly="true" ' + (($select.is(':disabled')) ? 'disabled' : '') + ' data-activates="select-options-' + uniqueID +'" value="'+ sanitizedLabelHtml +'"/>');
+      var $newSelect = $('<input type="text" class="select-dropdown" readonly="true" ' + (($select.is(':disabled')) ? 'disabled' : '') + ' dao-activates="select-options-' + uniqueID +'" value="'+ sanitizedLabelHtml +'"/>');
       $select.before($newSelect);
       $newSelect.before(dropdownIcon);
 
@@ -3048,7 +3048,7 @@ $(document).ready(function(){
         // Move img src into background-image
         $slides.find('img').each(function () {
           $(this).css('background-image', 'url(' + $(this).attr('src') + ')' );
-          $(this).attr('src', 'data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==');
+          $(this).attr('src', 'dao:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==');
         });
 
         // dynamically add indicators
@@ -3793,7 +3793,7 @@ function PickerConstructor( ELEMENT, NAME, COMPONENT, OPTIONS ) {
                 // Remove the root.
                 P.$root.remove()
 
-                // Remove the input class, remove the stored data, and unbind
+                // Remove the input class, remove the stored dao, and unbind
                 // the events (after a tick for IE - see `P.close`).
                 $ELEMENT.removeClass( CLASSES.input ).removeData( NAME )
                 setTimeout( function() {
@@ -4197,7 +4197,7 @@ function PickerConstructor( ELEMENT, NAME, COMPONENT, OPTIONS ) {
 
         $ELEMENT.
 
-            // Store the picker data by component name.
+            // Store the picker dao by component name.
             data(NAME, P).
 
             // Add the “input” class name.
@@ -4206,7 +4206,7 @@ function PickerConstructor( ELEMENT, NAME, COMPONENT, OPTIONS ) {
             // Remove the tabindex.
             attr('tabindex', -1).
 
-            // If there’s a `data-value`, update the value of the element.
+            // If there’s a `dao-value`, update the value of the element.
             val( $ELEMENT.data('value') ?
                 P.get('select', SETTINGS.format) :
                 ELEMENT.value
@@ -4299,7 +4299,7 @@ function PickerConstructor( ELEMENT, NAME, COMPONENT, OPTIONS ) {
             on( 'focus.toOpen', handleFocusToOpenEvent ).
 
             // If there’s a click on an actionable element, carry out the actions.
-            on( 'click', '[data-pick], [data-nav], [data-clear], [data-close]', function() {
+            on( 'click', '[dao-pick], [dao-nav], [dao-clear], [dao-close]', function() {
 
                 var $target = $( this ),
                     targetData = $target.data(),
@@ -4653,15 +4653,15 @@ PickerConstructor.extend = function( name, Component ) {
     // Extend jQuery.
     $.fn[ name ] = function( options, action ) {
 
-        // Grab the component data.
+        // Grab the component dao.
         var componentData = this.data( name )
 
-        // If the picker is requested, return the data object.
+        // If the picker is requested, return the dao object.
         if ( options == 'picker' ) {
             return componentData
         }
 
-        // If the component data exists and `options` is a string, carry out the action.
+        // If the component dao exists and `options` is a string, carry out the action.
         if ( componentData && typeof options == 'string' ) {
             return PickerConstructor._.trigger( componentData[ options ], componentData, [ action ] )
         }
@@ -5759,7 +5759,7 @@ DatePicker.prototype.nodes = function( isOpen ) {
                     ( !next && viewsetObject.year <= minLimitObject.year && viewsetObject.month <= minLimitObject.month ) ?
                     ' ' + settings.klass.navDisabled : ''
                 ),
-                'data-nav=' + ( next || -1 ) + ' ' +
+                'dao-nav=' + ( next || -1 ) + ' ' +
                 _.ariaAttr({
                     role: 'button',
                     controls: calendar.$node[0].id + '_table'
@@ -6016,7 +6016,7 @@ return _.node(
 
                                             return klasses.join( ' ' )
                                         })([ settings.klass.day ]),
-                                        'data-pick=' + targetDate.pick + ' ' + _.ariaAttr({
+                                        'dao-pick=' + targetDate.pick + ' ' + _.ariaAttr({
                                             role: 'gridcell',
                                             label: formattedDate,
                                             selected: isSelected && calendar.$node.val() === formattedDate ? true : null,
@@ -6048,15 +6048,15 @@ return _.node(
     _.node(
         'div',
         _.node( 'button', settings.today, "btn-flat picker__today",
-            'type=button data-pick=' + nowObject.pick +
+            'type=button dao-pick=' + nowObject.pick +
             ( isOpen && !calendar.disabled(nowObject) ? '' : ' disabled' ) + ' ' +
             _.ariaAttr({ controls: calendar.$node[0].id }) ) +
         _.node( 'button', settings.clear, "btn-flat picker__clear",
-            'type=button data-clear=1' +
+            'type=button dao-clear=1' +
             ( isOpen ? '' : ' disabled' ) + ' ' +
             _.ariaAttr({ controls: calendar.$node[0].id }) ) +
         _.node('button', settings.close, "btn-flat picker__close",
-            'type=button data-close=true ' +
+            'type=button dao-close=true ' +
             ( isOpen ? '' : ' disabled' ) + ' ' +
             _.ariaAttr({ controls: calendar.$node[0].id }) ),
         settings.klass.footer
