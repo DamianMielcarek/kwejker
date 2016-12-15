@@ -1,8 +1,5 @@
 package pl.akademiakodu.model;
 
-/**
- * Created by Lenovo on 2016-12-08.
- */
 public class Gif {
     private String name;
 

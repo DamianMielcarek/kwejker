@@ -1,5 +1,6 @@
 package pl.akademiakodu.dao;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,5 +29,15 @@ public class GifRepository {
             }
         }
         return null;
+    }
+
+    public List<Gif> getFavorites() {
+        List<Gif> favorites = new ArrayList<>();
+        for (Gif gif:ALL_GIFS){
+            if (gif.isFavorite()){
+                favorites.add(gif);
+            }
+        }
+        return favorites;
     }
 }
